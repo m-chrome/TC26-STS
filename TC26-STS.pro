@@ -9,7 +9,9 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     src/core.cpp \
-    tests/test-decision.cpp
+    tests/test-decision.cpp \
+    src/weak_test.cpp \
+    src/chi-squared_test.cpp
 
 HEADERS += \
     include/tc26/console.hpp \
@@ -20,5 +22,8 @@ HEADERS += \
     include/decisions/decisions.hpp \
     include/statistical tests/tests.hpp \
     include/ui/console.hpp \
-    include/statistical tests/tests.hpp
+    include/statistical tests/tests.hpp \
+    include/decisions/weak_test.hpp \
+    include/decisions/chi-squared_test.hpp
 
+QMAKE_CXXFLAGS += -std=c++14
