@@ -15,8 +15,7 @@ public:
 
 
 private:
-    //основная наша функция.
-    double logic();
+    void logic();
 
     tc26::VecTests tests_;
     tc26::VecDecisions decisions_;

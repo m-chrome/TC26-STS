@@ -24,6 +24,7 @@ namespace tc26 {
 
     class TestClass
     {
+    public:
         Test func;
         std::pair<int, char**> testParameters;
         std::string name;// название теста
@@ -35,6 +36,7 @@ namespace tc26 {
 
     class DecisionClass
     {
+    public:
         Deсision func;
         double alfa;
         std::pair<int, char**> decisionParameters;

@@ -11,7 +11,7 @@ Core::~Core()
 
 }
 
-double Core::logic()
+void Core::logic()
 {
     for(auto& currentStream: openFiles_)
     {
@@ -35,14 +35,9 @@ double Core::logic()
             for(auto& currentDecision: decisions_)
             {
                 if ((*currentDecision.func)(VecPvalues,currentDecision.alfa))
-                {
                     std::cout << "success";
-                }
                 else
-                {
                     std::cout << "fail";
-                    break;
-                }
             }
         }
     }
