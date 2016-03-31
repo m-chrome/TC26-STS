@@ -1,5 +1,5 @@
+#include <vector>
 #include "include/tc26/core.hpp"
-//#include <vector>
 
 Core::Core()
 {
@@ -11,20 +11,35 @@ Core::~Core()
 
 }
 
-double Core::logic(){
-    for (auto& currentStream: openFiles_){// идем по потокам
-        //std::vector<double> VecPvalues;
-        //составляем список из Pvalues
-        std::vector<std::vector<double>> resultPvalues; //итоговая табличка...вроде же.
-        for (auto& currentTest: tests_){
+double Core::logic()
+{
+    for(auto& currentStream: openFiles_)
+    {
+        // идем по потокам
+        // составляем список из Pvalues
+
+        // Таблица pvalue n*m, где
+        // n - количество выбранных тестов
+        // m - 100, количество подпоследовательностей, на которые мы разбиваем
+        // Нужна ли она нам? Пусть будет
+        std::vector<std::vector<double>> resultPvalues;
+        for(auto& currentTest: tests_)
+        {
             std::vector<double> VecPvalues;
-            while(currentStream){
+            while(currentStream)
+            {
                 VecPvalues.push_back((*currentTest.func)(currentStream, currentTest.testParameters.first, currentTest.testParameters.second));
             }
-            for(auto& currentDecision: decisions_){
-                if ((*currentDecision.func)(VecPvalues,currentDecision.alfa)){
+            // Запиливаем полученный вектор p-value в общую таблицу
+            resultPvalues.push_back(VecPvalues);
+            for(auto& currentDecision: decisions_)
+            {
+                if ((*currentDecision.func)(VecPvalues,currentDecision.alfa))
+                {
                     std::cout << "success";
-                }else{
+                }
+                else
+                {
                     std::cout << "fail";
                     break;
                 }
