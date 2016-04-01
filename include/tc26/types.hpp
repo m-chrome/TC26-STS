@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <map>
 
 namespace tc26 {
     //указатель на функцию в библиотеке тестов
@@ -47,6 +48,10 @@ namespace tc26 {
     typedef std::vector<DecisionClass> VecDecisions;
 
     typedef std::vector<std::fstream> VecStreams;
+
+    // Логичнее было бы хранить файлы (потоки) и
+    // и результат их проверки на годноту так:
+    typedef std::multimap<std::fstream, bool> CheckedStreams;
 }
 #endif // TYPES
 
