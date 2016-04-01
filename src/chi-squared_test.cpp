@@ -4,17 +4,14 @@
 #include <cmath>
 #include "include/decisions/chi-squared_test.hpp"
 
-using namespace std;
-using namespace decisions;
-
 bool isAlpha(double &alpha)
 {
     return table.find(alpha) != table.end();
 }
 
-bool chiSquareCheck(vector <double> &pset, double &alpha)
+bool chiSquareCheck(std::vector <double> &pset, double &alpha)
 {
-    sort(pset.begin(), pset.end());
+    std::sort(pset.begin(), pset.end());
 
     const int       NGroups         = 10;
     const double    pv_probability  = 0.1;
@@ -32,7 +29,7 @@ bool chiSquareCheck(vector <double> &pset, double &alpha)
             ++pv_counter;
             ++pv_freaquency;
         }
-        chi_expr += pow(pv_freaquency-nSize*pv_probability, 2)/(nSize*pv_probability);
+        chi_expr += std::pow(pv_freaquency-nSize*pv_probability, 2)/(nSize*pv_probability);
         uborder += 0.1;
     }
     return chi_expr <= chi_qntl;
