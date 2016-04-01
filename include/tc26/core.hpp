@@ -19,7 +19,7 @@ private:
 
     tc26::VecTests tests_;
     tc26::VecDecisions decisions_;
-    tc26::VecStreams openFiles_;
+    tc26::Streams4Check openFiles_;
 };
 
 #endif // CORE_HPP
