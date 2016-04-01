@@ -7,9 +7,10 @@
 #include <string>
 #include <map>
 
-namespace tc26 {
+namespace tc26
+{
     //указатель на функцию в библиотеке тестов
-    typedef double (*Test)(std::fstream&,int, char** );
+    typedef double (*Test)(const std::fstream&, int, char** );
 
     //указатель на функцию в библиотеке модуля принятия решений. (возможно нужно переделать(?))
     typedef bool (*Deсision)(std::vector<double> ,double);
@@ -51,7 +52,7 @@ namespace tc26 {
 
     // Логичнее было бы хранить файлы (потоки) и
     // и результат их проверки на годноту так:
-    typedef std::multimap<std::fstream, bool> CheckedStreams;
+    typedef std::multimap<std::fstream, bool> Streams4Check;
 }
 #endif // TYPES
 
