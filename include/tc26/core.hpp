@@ -1,9 +1,8 @@
 #ifndef CORE_HPP
 #define CORE_HPP
 
-#include <fstream>
-#include <vector>
 #include <include/tc26/types.hpp>
+#include <vector>
 
 class Core
 {
@@ -13,13 +12,14 @@ public:
     explicit Core();
     ~Core();
 
-
 private:
-    void logic();
 
-    tc26::VecTests tests_;
-    tc26::VecDecisions decisions_;
-    tc26::Streams4Check openFiles_;
+    tc26::StreamsCheck_t    m_openFiles;
+    tc26::UsedTests_t       m_tests;
+    tc26::UsedDecisions_t   m_decisions;
+    tc26::ResultTable_t     m_pvalues;
+
+    void Logic();
 };
 
 #endif // CORE_HPP
