@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include "include/tc26/core.hpp"
 
 Core::Core()
@@ -19,29 +20,26 @@ void Core::Logic()
     // Идём по открытым файлам (потокам)
     for(auto& currentStream: m_openFiles)
     {
-        // Таблица pvalue n*m, где
-        // n - количество выбранных тестов
-        // m - 100, количество подпоследовательностей, на которые мы разбиваем
-        // Нужна ли она нам? Пусть будет
-
         // Идём по выбранным тестам
         for(auto& currentTest: m_tests)
         {
-            std::set<double> CurPvalues;
+            std::vector<double> CurPvalues;
             while(currentStream.first)
             {
-                CurPvalues.insert((*currentTest.m_func)
+                CurPvalues.push_back((*currentTest.m_func)
                                      (currentStream.first,
                                       currentTest.m_testParameters.first,
                                       currentTest.m_testParameters.second));
             }
-            // Запиливаем полученный вектор p-value в общую таблицу
+
+            // Сортируем и запиливаем полученный вектор p-value в общую таблицу
+            std::sort(CurPvalues.begin(), CurPvalues.end());
             m_pvalues.push_back(CurPvalues);
 
             // Идём по модулям принятия решений
             for(auto& currentDecision: m_decisions)
             {
-                if ((*currentDecision.m_func)(CurPvalues,currentDecision.m_alfa))
+                if ((*currentDecision.m_func)(CurPvalues, currentDecision.m_alfa))
                     std::cout << "success";
                 else
                 {

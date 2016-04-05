@@ -1,35 +1,31 @@
-#include <algorithm>
 #include <vector>
-#include <map>
 #include <cmath>
 #include "include/decisions/chi-squared_test.hpp"
 
-bool isAlpha(double &alpha)
+bool IsAlpha(double &alpha)
 {
     return table.find(alpha) != table.end();
 }
 
-bool chiSquareCheck(std::vector <double> &pset, double &alpha)
+bool ChiSquareCheck(std::vector <double> &pvalue, double &alpha)
 {
-    std::sort(pset.begin(), pset.end());
-
-    const int       NGroups         = 10;
-    const double    pv_probability  = 0.1;
+    const int       NGROUPS         = 10;
+    const double    PV_PROBABILITY  = 0.1;
     int             pv_counter      = 0;
-    int             nSize           = pset.size();
+    int             nSize           = pvalue.size();
     double          uborder         = 0.1;
     double          chi_expr        = 0;
     double          chi_qntl        = (table.find(1-alpha))->second;
 
-    for(int i=0; i < NGroups; ++i)
+    for(int i=0; i < NGROUPS; ++i)
     {
         int pv_freaquency=0;
-        while(pset[pv_counter] < uborder)
+        while(pvalue[pv_counter] < uborder)
         {
             ++pv_counter;
             ++pv_freaquency;
         }
-        chi_expr += std::pow(pv_freaquency-nSize*pv_probability, 2)/(nSize*pv_probability);
+        chi_expr += std::pow(pv_freaquency-nSize*PV_PROBABILITY, 2)/(nSize*PV_PROBABILITY);
         uborder += 0.1;
     }
     return chi_expr <= chi_qntl;

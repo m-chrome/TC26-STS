@@ -19,11 +19,11 @@ std::map <double, double> table
 
 // Проверка того, имеется ли введённое alpha в таблице
 // параметров и квантилей.
-bool isAlpha(double &alpha);
+bool IsAlpha(double &alpha);
 
 // Хи-квадрат критерий для последовательности
 // p-value величин
-bool chiSquareCheck(std::vector <double> &pset, double &alpha);
+bool ChiSquareCheck(std::vector <double> &pvalue, double &alpha);
 
 #endif // CHISQUARED_TEST_HPP
 

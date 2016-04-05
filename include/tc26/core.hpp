@@ -2,7 +2,6 @@
 #define CORE_HPP
 
 #include <include/tc26/types.hpp>
-#include <vector>
 
 class Core
 {

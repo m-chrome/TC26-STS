@@ -1,11 +1,11 @@
 #include "include/decisions/weak_test.hpp"
 #include <vector>
 
-bool pvalueCheck(std::vector <double> &pset, double &alpha)
+bool PvalueCheck(std::vector <double> &pvalue, double &alpha)
 {
     int weakpvalue = 0;
-    for(std::size_t i=0; i < pset.size(); ++i)
-        if (pset[i]<alpha)
+    for(std::size_t i=0; i < pvalue.size(); ++i)
+        if (pvalue[i]<alpha)
             weakpvalue++;
     return weakpvalue <= 100*alpha;
 }
