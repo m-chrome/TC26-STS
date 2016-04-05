@@ -2,15 +2,19 @@
 #define TYPES
 /* Псевдонимы типов, с которыми можно будет работать. */
 
-#include <iostream>
+#include <fstream>
 #include <vector>
 #include <string>
 #include <map>
+#include <set>
 
 namespace tc26
 {
     // Для работы с потоками и результатами их тестирования
     typedef std::multimap<std::fstream, bool> StreamsCheck_t;
+
+    // Табличка для хранения полученных pvalue от всех тестов
+    typedef std::vector<std::set<double>> ResultTable_t;
 
     // Типы для тестов
     // Указатель на функцию теста
@@ -30,7 +34,7 @@ namespace tc26
 
     // Типы для модуля принятия решения (МПР)
     // Указатель на функцию в МПР
-    typedef bool (*DeсisionFunc_t)(std::vector<double> ,double);
+    typedef bool (*DeсisionFunc_t)(std::set<double>, double);
 
     // Объект определённого теста из МПР
     class DecisionObj
@@ -43,7 +47,7 @@ namespace tc26
     };
 
     // Вектор всех выбранных пользователем тестов МПР
-    typedef std::vector<DecisionClass> UsedDecisions_t;
+    typedef std::vector<DecisionObj> UsedDecisions_t;
 }
 #endif // TYPES
 
