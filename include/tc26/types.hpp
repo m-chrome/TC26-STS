@@ -9,50 +9,41 @@
 
 namespace tc26
 {
-    //указатель на функцию в библиотеке тестов
-    typedef double (*Test)(const std::fstream&, int, char** );
+    // Для работы с потоками и результатами их тестирования
+    typedef std::multimap<std::fstream, bool> StreamsCheck_t;
 
-    //указатель на функцию в библиотеке модуля принятия решений. (возможно нужно переделать(?))
-    typedef bool (*Deсision)(std::vector<double> ,double);
+    // Типы для тестов
+    // Указатель на функцию теста
+    typedef double (*TestFunc_t)(const std::fstream&, int, char** );
 
-    //тесты : указатель на функцию + параметры argc argv
-    typedef std::vector< std::pair<Deсision, std::pair<int, char**> > > Tests;
-
-    //модуль принятия решений: указатель на функцию + параметры.
-    typedef std::vector< std::pair<Deсision, std::pair<int, char**> > > Decisions;
-
-/*Я полагаю что со следующими псевдонимами будет удобнее работать:
-*/
-
-    class TestClass
+    // Объект определённого теста
+    class TestObj
     {
     public:
-        Test func;
-        std::pair<int, char**> testParameters;
-        std::string name;// название теста
+        TestFunc_t              m_func;
+        std::pair<int, char**>  m_testParameters;
+        std::string             m_testName;
     };
 
-    //аналог Tests
-    typedef std::vector< TestClass> VecTests;
+    // Вектор всех выбранных пользователем тестов
+    typedef std::vector<TestObj> UsedTests_t;
 
+    // Типы для модуля принятия решения (МПР)
+    // Указатель на функцию в МПР
+    typedef bool (*DeсisionFunc_t)(std::vector<double> ,double);
 
-    class DecisionClass
+    // Объект определённого теста из МПР
+    class DecisionObj
     {
     public:
-        Deсision func;
-        double alfa;
-        std::pair<int, char**> decisionParameters;
-        std::string name;
+        DeсisionFunc_t          m_func;
+        double                  m_alfa;
+        std::pair<int, char**>  m_decParameters;
+        std::string             m_decName;
     };
 
-    //аналог Decisions
-    typedef std::vector<DecisionClass> VecDecisions;
-
-    typedef std::vector<std::fstream> VecStreams;
-
-    // Логичнее было бы хранить файлы (потоки) и
-    // и результат их проверки на годноту так:
-    typedef std::multimap<std::fstream, bool> Streams4Check;
+    // Вектор всех выбранных пользователем тестов МПР
+    typedef std::vector<DecisionClass> UsedDecisions_t;
 }
 #endif // TYPES
 
