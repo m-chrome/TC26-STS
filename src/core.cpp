@@ -1,43 +1,47 @@
+#include <iostream>
 #include <vector>
 #include "include/tc26/core.hpp"
 
 Core::Core()
 {
+
 }
 
 Core::~Core()
 {
+    m_openFiles.clear();
+    m_tests.clear();
+    m_decisions.clear();
 }
 
-void Core::logic()
+void Core::Logic()
 {
     // Идём по открытым файлам (потокам)
-    for(auto& currentStream: openFiles_)
+    for(auto& currentStream: m_openFiles)
     {
         // Таблица pvalue n*m, где
         // n - количество выбранных тестов
         // m - 100, количество подпоследовательностей, на которые мы разбиваем
         // Нужна ли она нам? Пусть будет
-        std::vector<std::vector<double>> resultPvalues;
 
         // Идём по выбранным тестам
-        for(auto& currentTest: tests_)
+        for(auto& currentTest: m_tests)
         {
-            std::vector<double> VecPvalues;
+            std::set<double> CurPvalues;
             while(currentStream.first)
             {
-                VecPvalues.push_back((*currentTest.func)
+                CurPvalues.insert((*currentTest.m_func)
                                      (currentStream.first,
-                                      currentTest.testParameters.first,
-                                      currentTest.testParameters.second));
+                                      currentTest.m_testParameters.first,
+                                      currentTest.m_testParameters.second));
             }
             // Запиливаем полученный вектор p-value в общую таблицу
-            resultPvalues.push_back(VecPvalues);
+            m_pvalues.push_back(CurPvalues);
 
             // Идём по модулям принятия решений
-            for(auto& currentDecision: decisions_)
+            for(auto& currentDecision: m_decisions)
             {
-                if ((*currentDecision.func)(VecPvalues,currentDecision.alfa))
+                if ((*currentDecision.m_func)(CurPvalues,currentDecision.m_alfa))
                     std::cout << "success";
                 else
                 {
