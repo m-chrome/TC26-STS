@@ -20,7 +20,7 @@ private:
     tc26::ResultTable_t     m_pvalues;
 
     void Logic();
-    void Parsing();
+    void Parsing(char *dest);
 };
 
 #endif // CORE_HPP

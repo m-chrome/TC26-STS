@@ -62,9 +62,9 @@ void Core::Logic()
     }
 }
 
-void Core::Parsing()
+void Core::Parsing(char* dest)
 {
-    QDir dir("~/libs/statistical tests");
+    QDir dir(dest);
     QStringList filters;
     filters << "*.so" << "*.dll" << "*.DLL";
     QStringList plugins=dir.entryList(filters);
