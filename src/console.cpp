@@ -7,7 +7,8 @@
 
 void Console::Help(Core core)
 {
-    std::cout << "tc26-STS [--testname [args]] [-i directory] [-o file]\n\n";
+    std::cout << "tc26-STS [-p alpha] [--testname [args]] [-i directory] [-o file]\n\n";
+    std::cout << "\t-p: alpha parameter\n";
     std::cout << "\t--testname: names of tests with its arguments\n";
     std::cout << "\t-i: directory is a path to directory with input files\n";
     std::cout << "\t-o: output file for containing results\n\n";
