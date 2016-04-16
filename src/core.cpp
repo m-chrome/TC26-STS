@@ -16,9 +16,8 @@ Core::Core()
     m_isAllChecked = 0;
     ParsingTests("~/libs/statistical_tests");
     ParsingDecisions("~/libs/decisions");
-    // TODO: функция для выбора файла для тестирования
+    // TODO: функция для выбора файлов для тестирования
     // TODO: функция для заполнения выбранных тестов
-    // TODO: функция для заполнения выбранных решений
     Logic();
 }
 

@@ -44,7 +44,6 @@ namespace tc26
     // Вектор всех выбранных пользователем тестов
     typedef std::vector<TestObj> UsedTests_t;
 
-
     // Типы для модуля принятия решения (МПР)
     // Указатель на функцию в МПР
     typedef bool (*DeсisionFunc_t)(std::vector<double>, double);

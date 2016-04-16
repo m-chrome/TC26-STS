@@ -10,7 +10,6 @@
 class Core
 {
 public:
-
     Core();
     ~Core();
 
@@ -20,7 +19,6 @@ public:
     friend class Console;
 
 private:
-
     // Нужные файлы (файлы для тестирования
     // + выходной файл с результатами)
     tc26::StreamsCheck_t    m_openFiles;
