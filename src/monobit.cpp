@@ -1,7 +1,7 @@
 #include "include/statistical_tests/monobit.hpp"
-#include <iostream>
+#include "include/tc26/cephes.h"
+
 #include <cmath>
-#include <fstream>
 #include <cassert>
 #include <cstring>
 
@@ -33,6 +33,6 @@ double monobittest(std::ifstream &input, int argc, char *argv[])
         }
         --size;
     }
-    return erfc(abs(sum)/sqrt(2*size));
+    return cephes_erfc(abs(sum)/sqrt(2*size));
 }
 

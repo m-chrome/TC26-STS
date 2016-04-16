@@ -1,4 +1,10 @@
 #include "include/statistical_tests/run.hpp"
+#include "include/tc26/cephes.h"
+
+#include <cmath>
+#include <cassert>
+#include <cstring>
+
 double runtest(std::ifstream& input, int argc, char **argv)
 {
     assert(argc==1);
@@ -32,5 +38,5 @@ double runtest(std::ifstream& input, int argc, char **argv)
         }
     }
     sum=(mu-(size-1)/2)/(std::sqrt(size-2+(3*size-5)/2));
-    return erfc(std::abs(sum)/std::sqrt(2));
+    return cephes_erfc(std::abs(sum)/std::sqrt(2));
 }
