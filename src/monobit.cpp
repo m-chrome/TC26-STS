@@ -1,5 +1,5 @@
 #include "include/statistical_tests/monobit.hpp"
-#include "include/tc26/cephes.h"
+#include "include/tc26/cephes.hpp"
 
 #include <cmath>
 #include <cassert>

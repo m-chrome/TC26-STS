@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <math.h>
-#include "../include/cephes.h"
+#include "include/tc26/cephes.hpp"
 
 static const double	rel_error = 1E-12;
 

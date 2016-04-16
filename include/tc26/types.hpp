@@ -18,7 +18,7 @@ namespace tc26
     };
 
     // Для работы с потоками и результатами их тестирования
-    typedef std::map<const std::fstream&, FileData> StreamsCheck_t;
+    typedef std::map<std::fstream*, FileData> StreamsCheck_t;
 
     // Табличка для хранения полученных pvalue от всех тестов
     typedef std::vector<std::vector<double>> ResultTable_t;

@@ -5,7 +5,7 @@
 #include <fstream>
 #include <string>
 
-void Console::Help(Core core)
+void Console::Help(const Core& core)
 {
     std::cout << "tc26-STS [--testname [args]] [-i directory] [-o file]\n\n";
     std::cout << "\t--testname: names of tests with its arguments\n";
@@ -21,7 +21,7 @@ void Console::Help(Core core)
     }
 }
 
-void Console::OutputResults(Core core)
+void Console::OutputResults(Core& core)
 {
     std::cout << "Results of testing:\n\n";
     core.m_resultFile << "Results of testing:\n\n";

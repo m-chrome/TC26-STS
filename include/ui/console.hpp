@@ -3,6 +3,6 @@
 static class Console
 {
 public:
-    static void Help(Core core);
-    static void OutputResults(Core core);
+    static void Help(const Core &core);
+    static void OutputResults(Core &core);
 } Console;

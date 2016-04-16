@@ -43,7 +43,7 @@ void Core::Logic()
             while(currentStream.first)
             {
                 CurPvalues.push_back((*currentTest.m_func)
-                                     (currentStream.first,
+                                     (*currentStream.first,
                                       currentTest.m_testParameters.first,
                                       currentTest.m_testParameters.second));
             }
