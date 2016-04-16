@@ -1,6 +1,8 @@
 #include <include/tc26/core.hpp>
 
-static class Console{
+static class Console
+{
 public:
-    static void help(Core core);
-}Console;
+    static void Help(Core core);
+    static void OutputResults(Core core);
+} Console;
