@@ -13,6 +13,10 @@ public:
     Core();
     ~Core();
 
+    // Тесты
+    tc26::UsedTests_t       m_useTests;
+    tc26::UsedTests_t       m_allTests;
+
     // Параметр окончания проверки всех файлов
     bool                    m_isAllChecked;
 
@@ -24,9 +28,7 @@ private:
     tc26::StreamsCheck_t    m_openFiles;
     std::fstream            m_resultFile;
 
-    // Тесты
-    tc26::UsedTests_t       m_useTests;
-    tc26::UsedTests_t       m_allTests;
+
 
     // МПР
     tc26::UsedDecisions_t   m_useDecisions;

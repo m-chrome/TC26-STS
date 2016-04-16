@@ -10,7 +10,7 @@ struct testInfo
     std::string description;
 };
 
-std::map<std::string,testInfo> utilityTable
+const std::map<std::string,testInfo> utilityTable
 {
     {"monobittest",{0,"no arguments"}},
     {"runtest",{0,"no arguments"}},
@@ -19,5 +19,16 @@ std::map<std::string,testInfo> utilityTable
     {"maurertest",{0,"no arguments"}},
     {"randomwalktest",{0,"no arguments"}}
 };
+
+template<typename ForwardIterator>
+auto direct_Search(ForwardIterator begin,ForwardIterator end,std::string key)
+{
+
+    for(ForwardIterator i=begin;i!=end;++i)
+        if(i->m_testName==key)
+            return i;
+    return end+1;
+};
+
 #endif // UTILITY_HPP
 
