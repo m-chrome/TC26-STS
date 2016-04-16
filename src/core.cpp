@@ -1,7 +1,15 @@
+#include "include/tc26/core.hpp"
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "include/tc26/core.hpp"
+#include <string>
+
+#include <QDir>
+#include <QCoreApplication>
+#include <QLibrary>
+#include <QString>
+#include <QStringList>
 
 Core::Core()
 {
@@ -54,3 +62,20 @@ void Core::Logic()
     }
 }
 
+void Core::Parsing()
+{
+    QDir dir("~/libs/statistical tests");
+    QStringList filters;
+    filters << "*.so" << "*.dll" << "*.DLL";
+    QStringList plugins=dir.entryList(filters);
+    for(auto& el:plugins)
+    {
+        QString plugin=el.right(el.size()-3);//обрезка lib в названии
+        plugin=plugin.section('.',0,0);//обрезка расширения
+        QLibrary lib(plugin);
+        if (!lib.load()) std::cout << lib.isLoaded() << ' ' << lib.errorString().toStdString() << '\n';
+        tc26::TestFunc_t* fct = new tc26::TestFunc_t ((tc26::TestFunc_t)(lib.resolve(plugin.toStdString().c_str())));
+        if(!fct) std::cout << lib.errorString().toStdString() << '\n';
+        m_allTests.emplace_back(tc26::TestObj(*fct,(std::pair<int,char**>){0,NULL},plugin.toStdString()));
+    }
+}
