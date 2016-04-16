@@ -1,4 +1,4 @@
-#include "run.hpp"
+#include "include/statistical_tests/run.hpp"
 double runtest(std::ifstream& input, int argc, char **argv)
 {
     assert(argc==1);
