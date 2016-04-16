@@ -2,10 +2,6 @@
 #define RUN
 
 #include <fstream>
-#include <cassert>
-#include <cstring>
-#include <cmath>
-#include <iostream>
 
 #ifdef WIN32
 #ifdef FEX_CNBCDLL

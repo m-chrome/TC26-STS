@@ -24,7 +24,7 @@ void Console::Help(Core core)
 
 void Console::OutputResults(Core core)
 {
-    cout << "Results of testing:\n\n";
+    std::cout << "Results of testing:\n\n";
     core.m_resultFile << "Results of testing:\n\n";
     for(auto &file: core.m_openFiles)
     {
@@ -33,7 +33,7 @@ void Console::OutputResults(Core core)
             resultMessage = "Passed";
         else
             resultMessage = "Not passed";
-        cout << (file.second).fileName << '\t' << resultMessage << endl;
-        core.m_resultFile << (file.second).fileName << '\t' << resultMessage << endl;
+        std::cout << (file.second).fileName << '\t' << resultMessage << std::endl;
+        core.m_resultFile << (file.second).fileName << '\t' << resultMessage << std::endl;
     }
 }

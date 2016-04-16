@@ -102,7 +102,6 @@ void Core::ParsingDecisions(QString dest)
         plugin=plugin.section('.',0,0);//обрезка расширения
         QLibrary lib(plugin);
         if (!lib.load()) std::cout << lib.isLoaded() << ' ' << lib.errorString().toStdString() << '\n';
-
         tc26::DeсisionFunc_t* fct = new tc26::DeсisionFunc_t((tc26::DeсisionFunc_t)(lib.resolve(plugin.toStdString().c_str())));
         if(!fct) std::cout << lib.errorString().toStdString() << '\n';
         m_allDecisions.emplace_back(tc26::DecisionObj(*fct, 0,(std::pair<int,char**>){0,NULL},plugin.toStdString()));

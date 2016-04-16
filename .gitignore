@@ -1,2 +1,4 @@
 # user-файлы проекта
 *.user
+*.o
+Makefile
