@@ -14,7 +14,7 @@
 Core::Core()
 {
     m_isAllChecked = 0;
-    ParsingTests("~/libs/statistical_tests");
+    ParsingTests("../TC26-STS/libs/statistical_tests");
     ParsingDecisions("~/libs/decisions");
     // TODO: функция для выбора файла для тестирования
     // TODO: функция для заполнения выбранных тестов
