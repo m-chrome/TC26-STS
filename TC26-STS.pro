@@ -18,6 +18,7 @@ SOURCES += \
     main_console.cpp \
     src/cephes.c
 
+
 HEADERS += \
     include/statistical_tests/tests.hpp \
     include/statistical_tests/run.hpp \
@@ -32,6 +33,7 @@ HEADERS += \
     include/tc26/cephes.h \
     libs/decisions/decision_module.hpp \
     libs/statistical tests/tests.hpp
+
 
 QMAKE_CXXFLAGS += -std=c++14
 

@@ -15,10 +15,15 @@ int main(int argc, char *argv[])
         std::cerr << "Try tc26-STS --help";
         return 0;
     }
+
     if(!strcmp(argv[1],"--help"))
     {
-        Console::help(core);
+        Console::Help(core);
         return 0;
+    }
+    if(core.m_isAllChecked == 1)
+    {
+        Console::OutputResults(core);
     }
     return 0;
 }
