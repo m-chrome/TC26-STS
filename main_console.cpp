@@ -1,6 +1,8 @@
 #include "include/tc26/core.hpp"
 #include "include/ui/console.hpp"
 #include "include/tc26/utility.hpp"
+#include "include/tc26/types.hpp"
+#include "include/decisions/chi-squared_test.hpp"
 
 #include <cstring>
 #include <iostream>
@@ -11,6 +13,7 @@
 int main(int argc, char *argv[])
 {
     const char* interpreter="1234567890.e+-";
+    bool userOutputFile =false;
     Core core;
     if(argc==1)
     {
@@ -24,7 +27,7 @@ int main(int argc, char *argv[])
         return 0;
     }
     if(!strcmp(argv[1],"-p")) goto Error;
-    if(std::strspn(argv[2],interpreter)!=strlen(argv[2])||atof(argv[2])>=1||atof(argv[2])<=0) goto Error;
+    if(std::strspn(argv[2],interpreter)!=strlen(argv[2])||!IsAlpha(atof(argv[2]))) goto Error;
     core.setAlphaParameter(atof(argv[2]));
     for(int i=3;i<argc;++i)
     {
@@ -32,6 +35,7 @@ int main(int argc, char *argv[])
         {
             if(argv[i][1]=='-')
             {
+                //Модифицировать так, чтобы убрать allTests и useTests из public
                 char temp[30];
                 strcpy(&argv[i][2],temp);
                 if(utilityTable.find(temp)==utilityTable.end()) goto Error;
@@ -45,20 +49,38 @@ int main(int argc, char *argv[])
                 continue;
             }
             if(argv[i][1]=='i')
+            {
                 if(argv[i][2]=='f')
                 {
-                    std::fstream* temp = new std::fstream(argv[++i],std::ios_base::in);
-                    if(!temp->good())
-                    {
-                        std::cerr << "Failed to open input file " << argv[i] << ".\n\n";
-                        goto Error;
-                    }
-                    //TODO
+                    if(!Console::AddFileToFileMap(core,argv[++i])) goto Error;
+                    continue;
                 }
-            //TODO
+                if(argv[i][2]=='d')
+                {
+                    std::size_t filesCount=Console::AddDirectoryToFileMap(core,argv[++i]);
+                    if(!filesCount) goto Error;
+                    std::cout << filesCount << " was added successfully from " << argv[i] << '\n';
+                    continue;
+                }
+            }
+            if(argv[i][1]=='o')
+            {
+                if(userOutputFile)
+                {
+                    std::cerr << "Multiple definition of output file.\n";
+                    goto Error;
+                }
+                userOutputFile=true;
+                if(!Console::ChooseOutputFile(core,argv[++i])) goto Error;
+                continue;
+            }
+            std::cerr << "Invalid input parameters.\n";
+            goto Error;
         }
+        std::cerr << "Invalid input parameters.\n";
         goto Error;
     }
+    if(!userOutputFile) Console::ChooseOutputFile(core,"TestingResults.txt");
     if(core.getTestsResult() == 1)
     {
         Console::OutputResults(core);

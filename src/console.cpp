@@ -5,6 +5,10 @@
 #include <fstream>
 #include <string>
 
+#include <QDir>
+#include <QString>
+#include <QStringList>
+
 void Console::Help(const Core& core)
 {
     std::cout << "TC26-STS -p alpha [--testname [args]] [-id directory] [-if file] [-o file]\n\n";
@@ -37,4 +41,40 @@ void Console::OutputResults(Core& core)
         std::cout << (file.second).fileName << '\t' << resultMessage << std::endl;
         core.m_resultFile << (file.second).fileName << '\t' << resultMessage << std::endl;
     }
+}
+
+bool Console::AddFileToFileMap(Core &core, const char* name)
+{
+    std::fstream* temp = new std::fstream(name,std::ios_base::in);
+    if(!temp->good())
+    {
+        std::cerr << "Failed to open input file " << name << ".\n\n";
+        return false;
+    }
+    core.m_openFiles.emplace(temp,tc26::FileData(std::string(name),false));
+    return true;
+}
+
+int Console::AddDirectoryToFileMap(Core& core, const char* name)
+{
+    QDir dir((QString)(name));
+    QStringList filters;
+    filters << "*.txt" << "*.TXT";
+    QStringList files=dir.entryList(filters);
+    const std::size_t start = files.count();
+    std::size_t bad=0;
+    for(auto& file: files)
+        if(!AddFileToFileMap(core,file.toStdString().c_str())) ++bad;
+    return start-bad;
+}
+
+bool Console::ChooseOutputFile(Core& core,const char* name)
+{
+    core.m_resultFile.open(name,std::ios_base::out);
+    if(!core.m_resultFile.good())
+    {
+        std::cerr << "Failed to open/create output file " << name << ".\n\n";
+        return false;
+    }
+    return true;
 }
