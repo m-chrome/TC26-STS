@@ -4,13 +4,23 @@
 #include <vector>
 #include <map>
 
+#ifdef WIN32
+#ifdef FEX_CNBCDLL
+#define DLLEXPORT __declspec(dllexport)
+#else
+#define DLLEXPORT __declspec(dllimport)
+#endif
+#else
+#define DLLEXPORT
+#endif
+
 // Модуль принятия решений
 // Хи-квадрат критерий
 
 // Таблица квантилей распределения хи-квадрат для
 // всех alpha для 9 степеней свободы в формате:
 // "alpha" - "квантиль".
-std::map <double, double> table
+const std::map <double, double> table
 {
     {0.01, 2.0879}, {0.025, 2.7004},    {0.05, 3.3251},     {0.1, 4.1682},      {0.2, 5.3801},
     {0.3, 6.3933},  {0.4, 7.3570},      {0.5, 8.3428},      {0.6, 9.4136},      {0.7, 10.6564},
@@ -19,11 +29,17 @@ std::map <double, double> table
 
 // Проверка того, имеется ли введённое alpha в таблице
 // параметров и квантилей.
-bool IsAlpha(double alpha);
+extern "C" DLLEXPORT
+{
+    bool IsAlpha(double alpha);
+}
 
 // Хи-квадрат критерий для последовательности
 // p-value величин
-bool ChiSquareCheck(std::vector <double> &pvalue, double &alpha);
+extern "C" DLLEXPORT
+{
+    bool ChiSquareCheck(std::vector <double> &pvalue, double &alpha);
+}
 
 #endif // CHISQUARED_HPP
 

@@ -2,7 +2,7 @@
 #include "include/ui/console.hpp"
 #include "include/tc26/utility.hpp"
 #include "include/tc26/types.hpp"
-#include "include/decisions/chi-squared_test.hpp"
+#include "include/decisions/chisquared.hpp"
 
 #include <cstring>
 #include <iostream>
