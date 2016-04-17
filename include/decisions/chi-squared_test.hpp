@@ -19,7 +19,7 @@ std::map <double, double> table
 
 // Проверка того, имеется ли введённое alpha в таблице
 // параметров и квантилей.
-bool IsAlpha(double &alpha);
+bool IsAlpha(double alpha);
 
 // Хи-квадрат критерий для последовательности
 // p-value величин

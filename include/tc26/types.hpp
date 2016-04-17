@@ -13,6 +13,9 @@ namespace tc26
     // Данные для файла
     struct FileData
     {
+        FileData(std::string str,bool res):
+            fileName(str),
+            testResult(res){}
         std::string fileName;
         bool testResult;
     };

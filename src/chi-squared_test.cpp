@@ -2,7 +2,7 @@
 #include <cmath>
 #include "include/decisions/chi-squared_test.hpp"
 
-bool IsAlpha(double &alpha)
+bool IsAlpha(double alpha)
 {
     return table.find(alpha) != table.end();
 }
