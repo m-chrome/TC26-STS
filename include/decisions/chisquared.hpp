@@ -1,5 +1,5 @@
-#ifndef CHISQUARED_TEST_HPP
-#define CHISQUARED_TEST_HPP
+#ifndef CHISQUARED_HPP
+#define CHISQUARED_HPP
 
 #include <vector>
 #include <map>
@@ -25,5 +25,5 @@ bool IsAlpha(double alpha);
 // p-value величин
 bool ChiSquareCheck(std::vector <double> &pvalue, double &alpha);
 
-#endif // CHISQUARED_TEST_HPP
+#endif // CHISQUARED_HPP
 
