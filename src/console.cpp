@@ -64,7 +64,7 @@ int Console::AddDirectoryToFileMap(Core& core, const char* name)
     const std::size_t start = files.count();
     std::size_t bad=0;
     for(auto& file: files)
-        if(!AddFileToFileMap(core,file.toStdString().c_str())) ++bad;
+        if(!AddFileToFileMap(core,QString(name).append(SLASH).append(file).toStdString().c_str())) ++bad;
     return start-bad;
 }
 
