@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
     Core core;
     if(argc==1)
     {
-        std::cerr << "Try tc26-STS --help";
+        std::cerr << "Try tc26-STS --help\n";
         return 0;
     }
 

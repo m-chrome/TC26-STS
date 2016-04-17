@@ -1,6 +1,12 @@
 #ifndef UTILITY_HPP
 #define UTILITY_HPP
 
+#ifdef WIN32
+#define SLASH "\\"
+#else
+#define SLASH "/"
+#endif
+
 #include <map>
 #include <string>
 
