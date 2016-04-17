@@ -31,9 +31,13 @@ Core::~Core()
 
 void Core::setAlphaParameter(const double &alpha)
 {
-    m_alpha=alpha;
+    m_alphaParameter=alpha;
 }
 
+bool Core::getTestsResult() const
+{
+    return m_isAllFileChecked;
+}
 
 void Core::Logic()
 {
