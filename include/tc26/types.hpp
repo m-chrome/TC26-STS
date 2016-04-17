@@ -42,7 +42,7 @@ namespace tc26
     };
 
     // Вектор всех выбранных пользователем тестов
-    typedef std::vector<TestObj> UsedTests_t;
+    typedef std::vector<TestObj> Tests_t;
 
     // Типы для модуля принятия решения (МПР)
     // Указатель на функцию в МПР
@@ -52,19 +52,15 @@ namespace tc26
     class DecisionObj
     {
     public:
-        DecisionObj(DeсisionFunc_t f, double alpha, std::pair<int, char**> arg, std::string name):
+        DecisionObj(DeсisionFunc_t f, std::string name):
             m_func(f),
-            m_alpha(alpha),
-            m_decParameters(arg),
             m_decName(name) {}
 
         DeсisionFunc_t          m_func;
-        double                  m_alpha;
-        std::pair<int, char**>  m_decParameters;
         std::string             m_decName;
     };
 
     // Вектор всех выбранных пользователем тестов МПР
-    typedef std::vector<DecisionObj> UsedDecisions_t;
+    typedef std::vector<DecisionObj> Decisions_t;
 }
 #endif // TYPES
