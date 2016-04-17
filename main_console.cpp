@@ -81,6 +81,11 @@ int main(int argc, char *argv[])
         std::cerr << "Invalid input parameters.\n";
         goto Error;
     }
+    if(!Console::GetInputFilesCount(core))
+    {
+        std::cerr << "No input files.\n";
+        goto Error;
+    }
     if(!userOutputFile) Console::ChooseOutputFile(core,"TestingResults.txt");
     core.Logic();
     if(core.getTestsResult() == 1)
