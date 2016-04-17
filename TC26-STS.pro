@@ -49,4 +49,13 @@ DISTFILES += \
     libs/statistical_tests/libruntest.so \
     libs/statistical_tests/libruntest.so.1 \
     libs/statistical_tests/libruntest.so.1.0 \
-    libs/statistical_tests/libruntest.so.1.0.0
+    libs/statistical_tests/libruntest.so.1.0.0 \
+    scripts/compiletests.sh
+
+SUBDIRS += \
+    scripts/monobittest.pro \
+    scripts/runtest.pro \
+    scripts/monobittest.pro \
+    scripts/monobittest.pro \
+    scripts/runtest.pro \
+    scripts/runtest.pro
