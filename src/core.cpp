@@ -25,9 +25,8 @@ Core::~Core()
 {
     m_openFiles.clear();
     m_useTests.clear();
-    m_useDecisions.clear();
+    m_decisions.clear();
     m_allTests.clear();
-    m_allDecisions.clear();
 }
 
 void Core::Logic()
@@ -52,9 +51,9 @@ void Core::Logic()
             m_pvalues.push_back(CurPvalues);
 
             // Идём по модулям принятия решений
-            for(auto& currentDecision: m_useDecisions)
+            for(auto& currentDecision: m_decisions)
             {
-                if ((*currentDecision.m_func)(CurPvalues, currentDecision.m_alpha))
+                if ((*currentDecision.m_func)(CurPvalues, m_alpha))
                     continue;
                 else  
                 {
@@ -103,6 +102,6 @@ void Core::ParsingDecisions(QString dest)
         if (!lib.load()) std::cout << lib.isLoaded() << ' ' << lib.errorString().toStdString() << '\n';
         tc26::DeсisionFunc_t* fct = new tc26::DeсisionFunc_t((tc26::DeсisionFunc_t)(lib.resolve(plugin.toStdString().c_str())));
         if(!fct) std::cout << lib.errorString().toStdString() << '\n';
-        m_allDecisions.emplace_back(tc26::DecisionObj(*fct, 0,(std::pair<int,char**>){0,NULL},plugin.toStdString()));
+        m_decisions.emplace_back(tc26::DecisionObj(*fct, plugin.toStdString()));
     }
 }

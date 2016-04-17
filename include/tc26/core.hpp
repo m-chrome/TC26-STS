@@ -14,8 +14,8 @@ public:
     ~Core();
 
     // Тесты
-    tc26::UsedTests_t       m_useTests;
-    tc26::UsedTests_t       m_allTests;
+    tc26::Tests_t       m_useTests;
+    tc26::Tests_t       m_allTests;
 
     // Параметр окончания проверки всех файлов
     bool                    m_isAllChecked;
@@ -28,11 +28,8 @@ private:
     tc26::StreamsCheck_t    m_openFiles;
     std::fstream            m_resultFile;
 
-
-
     // МПР
-    tc26::UsedDecisions_t   m_useDecisions;
-    tc26::UsedDecisions_t   m_allDecisions;
+    tc26::Decisions_t   m_decisions;
 
     // Таблица с pvalue
     tc26::ResultTable_t     m_pvalues;
@@ -41,6 +38,9 @@ private:
     void Logic();
     void ParsingTests(QString dest);
     void ParsingDecisions(QString dest);
+
+    // Нужные переменные
+    double                  m_alpha;
 };
 
 #endif // CORE_HPP
