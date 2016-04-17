@@ -10,6 +10,7 @@
 
 int main(int argc, char *argv[])
 {
+    const char* interpreter="1234567890.e+-";
     Core core;
     if(argc==1)
     {
@@ -23,8 +24,8 @@ int main(int argc, char *argv[])
         return 0;
     }
     if(!strcmp(argv[1],"-p")) goto Error;
-    if(atof(argv[2])>=1||atof(argv[2])<=0) goto Error;
-    //alpha = atof(argv[2])
+    if(std::strspn(argv[2],interpreter)!=strlen(argv[2])||atof(argv[2])>=1||atof(argv[2])<=0) goto Error;
+    core.setAlphaParameter(atof(argv[2]));
     for(int i=3;i<argc;++i)
     {
         if(argv[i][0]=='-')
@@ -37,16 +38,28 @@ int main(int argc, char *argv[])
                 core.m_useTests.emplace_back(*direct_Search(core.m_allTests.begin(),core.m_allTests.end(),std::string(temp)));
                 for(int j=0;j<utilityTable.find(temp)->second.t_argc;++j)
                 {
-                    //проверить, правильное ли количество параметров подается после теста
-                    (core.m_useTests.end()-1)->m_testParameters.second[j]=argv[++i];
+                    if(argv[++i][0]=='-'||std::strspn(argv[i],interpreter)!=strlen(argv[i])) goto Error;
+                    (core.m_useTests.end()-1)->m_testParameters.second[j]=argv[i];
                 }
                 (core.m_useTests.end()-1)->m_testParameters.first=utilityTable.find(temp)->second.t_argc;
+                continue;
             }
-            //дописать обработку не для тестов с их параметрами(параметры для тестов обрабатываются вместе с именами тестов)
+            if(argv[i][1]=='i')
+                if(argv[i][2]=='f')
+                {
+                    std::fstream* temp = new std::fstream(argv[++i],std::ios_base::in);
+                    if(!temp->good())
+                    {
+                        std::cerr << "Failed to open input file " << argv[i] << ".\n\n";
+                        goto Error;
+                    }
+                    //TODO
+                }
+            //TODO
         }
         goto Error;
     }
-    if(core.m_isAllChecked == 1)
+    if(core.getTestsResult() == 1)
     {
         Console::OutputResults(core);
     }
