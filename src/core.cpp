@@ -29,6 +29,12 @@ Core::~Core()
     m_allTests.clear();
 }
 
+void Core::setAlphaParameter(const double &alpha)
+{
+    m_alpha=alpha;
+}
+
+
 void Core::Logic()
 {
     // Идём по открытым файлам (потокам)

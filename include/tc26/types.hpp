@@ -35,7 +35,8 @@ namespace tc26
         TestObj(TestFunc_t f,std::pair<int, char**> arg,std::string name):
             m_func(f),
             m_testParameters(arg),
-            m_testName(name){}
+            m_testName(name) {}
+
         TestFunc_t              m_func;
         std::pair<int, char**>  m_testParameters;
         std::string             m_testName;

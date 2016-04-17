@@ -20,6 +20,9 @@ public:
     // Параметр окончания проверки всех файлов
     bool                    m_isAllChecked;
 
+    // Сеттер
+    void setAlphaParameter(const double &alpha);
+
     friend class Console;
 
 private:
