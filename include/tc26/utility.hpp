@@ -10,6 +10,8 @@
 #include <map>
 #include <string>
 
+const int nvalue=1000000;
+
 struct testInfo
 {
     int t_argc;
