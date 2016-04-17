@@ -16,7 +16,8 @@ SOURCES += \
     src/run.cpp \
     src/console.cpp \
     main_console.cpp \
-    src/cephes.cpp
+    src/cephes.cpp \
+    src/maurer.cpp
 
 
 HEADERS += \
@@ -32,7 +33,8 @@ HEADERS += \
     include/tc26/utility.hpp \
     libs/decisions/decision_module.hpp \
     libs/statistical_tests/tests.hpp \
-    include/tc26/cephes.hpp
+    include/tc26/cephes.hpp \
+    include/statistical_tests/maurer.hpp
 
 
 QMAKE_CXXFLAGS += -std=c++14
