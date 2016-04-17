@@ -17,11 +17,12 @@ public:
     tc26::Tests_t       m_useTests;
     tc26::Tests_t       m_allTests;
 
-    // Параметр окончания проверки всех файлов
-    bool                    m_isAllChecked;
+    // МПР
+    tc26::Decisions_t   m_decisions;
 
-    // Сеттер
+    // Внешние методы
     void setAlphaParameter(const double &alpha);
+    bool getTestsResult() const;
 
     friend class Console;
 
@@ -30,9 +31,6 @@ private:
     // + выходной файл с результатами)
     tc26::StreamsCheck_t    m_openFiles;
     std::fstream            m_resultFile;
-
-    // МПР
-    tc26::Decisions_t   m_decisions;
 
     // Таблица с pvalue
     tc26::ResultTable_t     m_pvalues;
@@ -43,7 +41,8 @@ private:
     void ParsingDecisions(QString dest);
 
     // Нужные переменные
-    double                  m_alpha;
+    bool                    m_isAllFileChecked;
+    double                  m_alphaParameter;
 };
 
 #endif // CORE_HPP
