@@ -17,10 +17,9 @@ Core::Core()
     m_isAllFileChecked = 0;
     m_alphaParameter = 0;
     ParsingTests("../TC26-STS/libs/statistical_tests");
-    ParsingDecisions("~/libs/decisions");
+    ParsingDecisions("../TC26-STS/libs/decisions");
     // TODO: функция для выбора файлов для тестирования
     // TODO: функция для заполнения выбранных тестов
-    Logic();
 }
 
 Core::~Core()
@@ -55,14 +54,15 @@ void Core::Logic()
         for(auto& currentTest: m_useTests)
         {
             std::vector<double> CurPvalues;
-            while(currentStream.first)
+            while(*currentStream.first)
             {
                 CurPvalues.push_back((*currentTest.m_func)
                                      (*currentStream.first,
                                       currentTest.m_testParameters.first,
                                       currentTest.m_testParameters.second));
             }
-
+            currentStream.first->clear();
+            currentStream.first->seekg(0);
             // Сортируем и запиливаем полученный вектор p-value в общую таблицу
             std::sort(CurPvalues.begin(), CurPvalues.end());
             m_pvalues.push_back(CurPvalues);

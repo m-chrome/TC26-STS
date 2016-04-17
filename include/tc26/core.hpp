@@ -17,6 +17,7 @@ public:
     tc26::Tests_t       m_useTests;
     tc26::Tests_t       m_allTests;
 
+    void Logic();
     // МПР
     tc26::Decisions_t   m_decisions;
 
@@ -36,7 +37,6 @@ private:
     tc26::ResultTable_t     m_pvalues;
 
     // Методы
-    void Logic();
     void ParsingTests(QString dest);
     void ParsingDecisions(QString dest);
 

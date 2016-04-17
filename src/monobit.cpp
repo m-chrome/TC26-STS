@@ -1,14 +1,16 @@
-#include "include/statistical_tests/monobit.hpp"
-#include "include/tc26/cephes.hpp"
+#include "../include/statistical_tests/monobit.hpp"
+#include "../include/tc26/cephes.hpp"
+#include "../include/tc26/utility.hpp"
 
 #include <cmath>
 #include <cassert>
 #include <cstring>
+#include <iostream>
 
 double monobittest(std::ifstream &input, int argc, char *argv[])
 {
-    assert(argc==1);
-    int length=atoi(argv[0]), sum = 0,size=0;
+    assert(argc==0);
+    int length=nvalue, sum = 0,size=0;
     char bit;
     input >> bit;
     if(length)
@@ -33,6 +35,7 @@ double monobittest(std::ifstream &input, int argc, char *argv[])
         }
         --size;
     }
+    std::cout << "Monobittest comleted.\n";
     return cephes_erfc(abs(sum)/sqrt(2*size));
 }
 

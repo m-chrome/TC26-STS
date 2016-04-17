@@ -5,6 +5,7 @@
 #include "include/decisions/chisquared.hpp"
 
 #include <cstring>
+#include <string>
 #include <iostream>
 
 #include <QCoreApplication>
@@ -26,7 +27,7 @@ int main(int argc, char *argv[])
         Error:Console::Help(core);
         return 0;
     }
-    if(!strcmp(argv[1],"-p")) goto Error;
+    if(strcmp(argv[1],"-p")) goto Error;
     if(std::strspn(argv[2],interpreter)!=strlen(argv[2])||!IsAlpha(atof(argv[2]))) goto Error;
     core.setAlphaParameter(atof(argv[2]));
     for(int i=3;i<argc;++i)
@@ -37,7 +38,7 @@ int main(int argc, char *argv[])
             {
                 //Модифицировать так, чтобы убрать allTests и useTests из public
                 char temp[30];
-                strcpy(&argv[i][2],temp);
+                strcpy(temp,argv[i]+2);
                 if(utilityTable.find(temp)==utilityTable.end()) goto Error;
                 core.m_useTests.emplace_back(*direct_Search(core.m_allTests.begin(),core.m_allTests.end(),std::string(temp)));
                 for(int j=0;j<utilityTable.find(temp)->second.t_argc;++j)
@@ -81,6 +82,7 @@ int main(int argc, char *argv[])
         goto Error;
     }
     if(!userOutputFile) Console::ChooseOutputFile(core,"TestingResults.txt");
+    core.Logic();
     if(core.getTestsResult() == 1)
     {
         Console::OutputResults(core);
