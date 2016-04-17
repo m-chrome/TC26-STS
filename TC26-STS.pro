@@ -21,7 +21,6 @@ SOURCES += \
 
 
 HEADERS += \
-    include/statistical_tests/tests.hpp \
     include/statistical_tests/run.hpp \
     include/statistical_tests/monobit.hpp \
     include/decisions/weak_test.hpp \

@@ -24,10 +24,15 @@ Core::Core()
 
 Core::~Core()
 {
+    for(auto &file: m_openFiles)
+    {
+        file.first->close();
+        (file.second).fileName.clear();
+    }
     m_openFiles.clear();
     m_useTests.clear();
-    m_decisions.clear();
     m_allTests.clear();
+    m_decisions.clear();
 }
 
 void Core::setAlphaParameter(const double &alpha)
@@ -64,7 +69,7 @@ void Core::Logic()
             // Идём по модулям принятия решений
             for(auto& currentDecision: m_decisions)
             {
-                if ((*currentDecision.m_func)(CurPvalues, m_alpha))
+                if ((*currentDecision.m_func)(CurPvalues, m_alphaParameter))
                     continue;
                 else  
                 {
