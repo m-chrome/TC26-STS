@@ -13,7 +13,8 @@
 
 Core::Core()
 {
-    m_isAllChecked = 0;
+    m_isAllFileChecked = 0;
+    m_alphaParameter = 0;
     ParsingTests("../TC26-STS/libs/statistical_tests");
     ParsingDecisions("~/libs/decisions");
     // TODO: функция для выбора файлов для тестирования
@@ -77,7 +78,7 @@ void Core::Logic()
         // прошёл через тесты модуля принятия решения
         (currentStream.second).testResult=1;
     }
-    m_isAllChecked = 1;
+    m_isAllFileChecked = 1;
 }
 
 void Core::ParsingTests(QString dest)
