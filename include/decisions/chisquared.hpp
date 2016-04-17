@@ -1,5 +1,5 @@
-#ifndef CHISQUARED_TEST_HPP
-#define CHISQUARED_TEST_HPP
+#ifndef CHISQUARED_HPP
+#define CHISQUARED_HPP
 
 #include <vector>
 #include <map>
@@ -19,11 +19,11 @@ std::map <double, double> table
 
 // Проверка того, имеется ли введённое alpha в таблице
 // параметров и квантилей.
-bool IsAlpha(double &alpha);
+bool IsAlpha(double alpha);
 
 // Хи-квадрат критерий для последовательности
 // p-value величин
 bool ChiSquareCheck(std::vector <double> &pvalue, double &alpha);
 
-#endif // CHISQUARED_TEST_HPP
+#endif // CHISQUARED_HPP
 

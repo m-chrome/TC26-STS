@@ -1,5 +1,5 @@
-#ifndef WEAK_TEST_HPP
-#define WEAK_TEST_HPP
+#ifndef WEAK_HPP
+#define WEAK_HPP
 
 #include <vector>
 
@@ -9,7 +9,7 @@
 // Для массива pset считает число pvalue, меньших alpha.
 // Если это число больше 100*alpha, то вернуть 1 (fail),
 // иначе вернуть 0 (check).
-bool PvalueCheck(std::vector <double> &pvalue, double &alpha);
+bool WeakCheck(std::vector <double> &pvalue, double &alpha);
 
-#endif // WEAK_TEST_HPP
+#endif // WEAK_HPP
 

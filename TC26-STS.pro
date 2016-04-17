@@ -10,21 +10,19 @@ TEMPLATE = app
 SOURCES += \
     src/core.cpp \
     tests/test-decision.cpp \
-    src/weak_test.cpp \
-    src/chi-squared_test.cpp \
     src/monobit.cpp \
     src/run.cpp \
     src/console.cpp \
     main_console.cpp \
     src/cephes.cpp \
-    src/maurer.cpp
+    src/maurer.cpp \
+    src/chisquared.cpp \
+    src/weak.cpp
 
 
 HEADERS += \
     include/statistical_tests/run.hpp \
     include/statistical_tests/monobit.hpp \
-    include/decisions/weak_test.hpp \
-    include/decisions/chi-squared_test.hpp \
     include/tc26/core.hpp \
     include/tc26/logger.hpp \
     include/tc26/types.hpp \
@@ -33,7 +31,9 @@ HEADERS += \
     libs/decisions/decision_module.hpp \
     libs/statistical_tests/tests.hpp \
     include/tc26/cephes.hpp \
-    include/statistical_tests/maurer.hpp
+    include/statistical_tests/maurer.hpp \
+    include/decisions/weak.hpp \
+    include/decisions/chisquared.hpp
 
 
 QMAKE_CXXFLAGS += -std=c++14
