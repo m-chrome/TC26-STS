@@ -8,4 +8,5 @@ public:
     static bool AddFileToFileMap(Core &core, const char *name);
     static int AddDirectoryToFileMap(Core& core,const char* name);
     static bool ChooseOutputFile(Core& core,const char* name);
+    static std::size_t GetInputFilesCount(const Core& core);
 } Console;

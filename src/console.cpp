@@ -78,3 +78,8 @@ bool Console::ChooseOutputFile(Core& core,const char* name)
     }
     return true;
 }
+
+std::size_t Console::GetInputFilesCount(const Core& core)
+{
+    return core.m_openFiles.size();
+}
