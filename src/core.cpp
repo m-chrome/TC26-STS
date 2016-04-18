@@ -68,6 +68,7 @@ void Core::Logic()
             m_pvalues.push_back(CurPvalues);
 
             // Идём по модулям принятия решений
+            std::cout << "Decision Rule:\n";
             for(auto& currentDecision: m_decisions)
             {
                 if ((*currentDecision.m_func)(CurPvalues, m_alphaParameter))
@@ -78,6 +79,7 @@ void Core::Logic()
                     break;
                 }
             }
+            std::cout << "Decision Rule end.\n";
         }
 
         // Всё хорошо, все тесты выполнены и поток успешно
