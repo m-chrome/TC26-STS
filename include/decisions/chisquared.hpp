@@ -27,17 +27,14 @@ const std::map <double, double> table
     {0.8, 12.2421}, {0.9, 14.6837},     {0.95, 16.9190},    {0.975, 19.0228},   {0.99, 21.6660}
 };
 
-// Проверка того, имеется ли введённое alpha в таблице
-// параметров и квантилей.
 extern "C" DLLEXPORT
 {
+    // Проверка того, имеется ли введённое alpha в таблице
+    // параметров и квантилей.
     bool IsAlpha(double alpha);
-}
 
-// Хи-квадрат критерий для последовательности
-// p-value величин
-extern "C" DLLEXPORT
-{
+    // Хи-квадрат критерий для последовательности
+    // p-value величин
     bool ChiSquareCheck(std::vector <double> &pvalue, double &alpha);
 }
 
