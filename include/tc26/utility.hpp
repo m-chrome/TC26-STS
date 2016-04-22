@@ -40,7 +40,7 @@ auto direct_Search(ForwardIterator begin,ForwardIterator end,std::string key)
     return end+1;
 };
 
-bool UseConfigFile(char* name, Core& core);
+bool UseConfigFile(char* name, Core& core, bool& userOutputFile);
 
 #endif // UTILITY_HPP
 
