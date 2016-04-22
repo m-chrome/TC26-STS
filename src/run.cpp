@@ -40,6 +40,5 @@ double runtest(std::ifstream& input, int argc, char **argv)
         }
     }
     sum=(mu-(size-1)/2)/(std::sqrt(size-2+(3*size-5)/2));
-    std::cout << "Runtest comleted.\n";
     return cephes_erfc(std::abs(sum)/std::sqrt(2));
 }

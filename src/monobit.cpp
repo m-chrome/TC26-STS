@@ -35,7 +35,6 @@ double monobittest(std::ifstream &input, int argc, char *argv[])
         }
         --size;
     }
-    std::cout << "Monobittest comleted.\n";
     return cephes_erfc(abs(sum)/sqrt(2*size));
 }
 
