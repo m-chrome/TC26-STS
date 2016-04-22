@@ -40,13 +40,19 @@ void Console::OutputResults(Core& core)
     core.m_resultFile << "Results of testing:\n\n";
     for(auto &file: core.m_openFiles)
     {
+        std::cout << (file.second).fileName << '\n';
+        core.m_resultFile << (file.second).fileName << '\n';
         std::string resultMessage;
-        if (file.second.testResult)
-            resultMessage = "Passed";
-        else
-            resultMessage = "Not passed";
-        std::cout << (file.second).fileName << '\t' << resultMessage << std::endl;
-        core.m_resultFile << (file.second).fileName << '\t' << resultMessage << std::endl;
+        for(auto &test: file.second.testResults)
+        {
+            if(test.second)
+                resultMessage = "Passed";
+            else
+                resultMessage = "Not passed";
+            std::cout << "\t- " << test.first << "\t-- " << resultMessage << std::endl;
+            core.m_resultFile<< "\t- " << test.first << "\t-- " << resultMessage << std::endl;
+
+        }
     }
 }
 
@@ -58,7 +64,7 @@ bool Console::AddFileToFileMap(Core &core, const char* name)
         std::cerr << "Failed to open input file " << name << ".\n\n";
         return false;
     }
-    core.m_openFiles.emplace(temp,tc26::FileData(std::string(name),false));
+    core.m_openFiles.emplace(temp,tc26::FileData(std::string(name)));
     return true;
 }
 
