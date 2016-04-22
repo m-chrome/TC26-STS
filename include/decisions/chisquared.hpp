@@ -35,7 +35,7 @@ extern "C" DLLEXPORT
 
     // Хи-квадрат критерий для последовательности
     // p-value величин
-    bool ChiSquareCheck(std::vector <double> &pvalue, double &alpha);
+    bool ChiSquareCheck(std::vector <double> &pvalue, double alpha);
 }
 
 #endif // CHISQUARED_HPP
