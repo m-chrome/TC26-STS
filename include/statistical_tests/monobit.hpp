@@ -16,7 +16,7 @@
 
 extern "C" DLLEXPORT
 {
-    double monobittest(std::ifstream &input, int argc, char* argv[]);
+    double monobittest(std::ifstream &input, int argc, char **);
 }
 
 #endif // TESTMONOBIT_HPP

@@ -13,7 +13,7 @@
 #define DLLEXPORT
 #endif
 
-extern "C" DLLEXPORT double runtest(std::ifstream &input, int argc, char **argv);
+extern "C" DLLEXPORT double runtest(std::ifstream &input, int argc, char **);
 
 #endif // RUN
 

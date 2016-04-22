@@ -7,7 +7,7 @@
 #include <cstring>
 #include <iostream>
 
-double runtest(std::ifstream& input, int argc, char **argv)
+double runtest(std::ifstream& input, int argc, char **)
 {
     assert(argc==0);
     int length=nvalue,size=0;

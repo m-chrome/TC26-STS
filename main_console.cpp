@@ -13,7 +13,6 @@
 
 int main(int argc, char *argv[])
 {
-    const char* interpreter="1234567890.e+-";
     bool userOutputFile =false;
     Core core;
     if(argc==1)
@@ -29,12 +28,12 @@ Error:Console::Help(core);
     }
     if(!strcmp(argv[1],"-c"))
     {
-        if(!UseConfigFile(argv[1],core)) goto Error;
+        if(!UseConfigFile(argv[1],core,userOutputFile)) goto Error;
     }
     else
     {
         if(strcmp(argv[1],"-p")) goto Error;
-        if(std::strspn(argv[2],interpreter)!=strlen(argv[2])||!IsAlpha(atof(argv[2]))) goto Error;
+        if(std::strspn(argv[2],Console::interpreter)!=strlen(argv[2])||!IsAlpha(atof(argv[2]))) goto Error;
         core.setAlphaParameter(atof(argv[2]));
         for(int i=3;i<argc;++i)
         {
@@ -42,14 +41,13 @@ Error:Console::Help(core);
             {
                 if(argv[i][1]=='-')
                 {
-                    //Модифицировать так, чтобы убрать allTests и useTests из public
                     char temp[30];
                     strcpy(temp,argv[i]+2);
-                    if(utilityTable.find(temp)==utilityTable.end()) goto Error;
+                    if(utilityTable.find(temp)==utilityTable.end()||direct_Search(core.getAllTests().begin(),core.getAllTests().end(),std::string(temp))==core.getAllTests().end()) goto Error;
                     core.getUseTests().emplace_back(*direct_Search(core.getAllTests().begin(),core.getAllTests().end(),std::string(temp)));
                     for(int j=0;j<utilityTable.find(temp)->second.t_argc;++j)
                     {
-                        if(argv[++i][0]=='-'||std::strspn(argv[i],interpreter)!=strlen(argv[i])) goto Error;
+                        if(argv[++i][0]=='-'||std::strspn(argv[i],Console::interpreter)!=strlen(argv[i])) goto Error;
                         (core.getUseTests().end()-1)->m_testParameters.second[j]=argv[i];
                     }
                     (core.getUseTests().end()-1)->m_testParameters.first=utilityTable.find(temp)->second.t_argc;
@@ -66,7 +64,7 @@ Error:Console::Help(core);
                     {
                         std::size_t filesCount=Console::AddDirectoryToFileMap(core,argv[++i]);
                         if(!filesCount) goto Error;
-                        std::cout << filesCount << " was added successfully from " << argv[i] << '\n';
+                        std::cout << filesCount << " file(s) was added successfully from " << argv[i] << '\n';
                         continue;
                     }
                 }

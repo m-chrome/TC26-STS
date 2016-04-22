@@ -7,7 +7,7 @@
 #include <cstring>
 #include <iostream>
 
-double monobittest(std::ifstream &input, int argc, char *argv[])
+double monobittest(std::ifstream &input, int argc, char **)
 {
     assert(argc==0);
     int length=nvalue, sum = 0,size=0;
