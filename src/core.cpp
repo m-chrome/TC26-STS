@@ -45,6 +45,16 @@ bool Core::getTestsResult() const
     return m_isAllFileChecked;
 }
 
+tc26::Tests_t& Core::getAllTests()
+{
+    return m_allTests;
+}
+
+tc26::Tests_t& Core::getUseTests()
+{
+    return m_useTests;
+}
+
 void Core::Logic()
 {
     // Идём по открытым файлам (потокам)

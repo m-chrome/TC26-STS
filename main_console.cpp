@@ -40,13 +40,13 @@ int main(int argc, char *argv[])
                 char temp[30];
                 strcpy(temp,argv[i]+2);
                 if(utilityTable.find(temp)==utilityTable.end()) goto Error;
-                core.m_useTests.emplace_back(*direct_Search(core.m_allTests.begin(),core.m_allTests.end(),std::string(temp)));
+                core.getUseTests().emplace_back(*direct_Search(core.getAllTests().begin(),core.getAllTests().end(),std::string(temp)));
                 for(int j=0;j<utilityTable.find(temp)->second.t_argc;++j)
                 {
                     if(argv[++i][0]=='-'||std::strspn(argv[i],interpreter)!=strlen(argv[i])) goto Error;
-                    (core.m_useTests.end()-1)->m_testParameters.second[j]=argv[i];
+                    (core.getUseTests().end()-1)->m_testParameters.second[j]=argv[i];
                 }
-                (core.m_useTests.end()-1)->m_testParameters.first=utilityTable.find(temp)->second.t_argc;
+                (core.getUseTests().end()-1)->m_testParameters.first=utilityTable.find(temp)->second.t_argc;
                 continue;
             }
             if(argv[i][1]=='i')
