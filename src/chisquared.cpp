@@ -1,4 +1,4 @@
-#include "include/decisions/chisquared.hpp"
+#include "../include/decisions/chisquared.hpp"
 
 #include <vector>
 #include <cmath>
