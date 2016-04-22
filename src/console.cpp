@@ -51,7 +51,6 @@ void Console::OutputResults(Core& core)
                 resultMessage = "Not passed";
             std::cout << "\t- " << test.first << "\t-- " << resultMessage << std::endl;
             core.m_resultFile<< "\t- " << test.first << "\t-- " << resultMessage << std::endl;
-
         }
     }
 }
