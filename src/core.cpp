@@ -5,7 +5,6 @@
 #include <vector>
 #include <algorithm>
 #include <string>
-#include <algorithm>
 
 #include <QDir>
 #include <QCoreApplication>
