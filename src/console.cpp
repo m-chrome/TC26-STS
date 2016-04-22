@@ -26,6 +26,12 @@ void Console::Help(const Core& core)
             std::cout << "arg" << i << ' ';
         std::cout << '\t' << utilityTable.find(el.m_testName)->second.description << '\n';
     }
+
+    std::cout << "\nAvailible decision modules:\n";
+    for(auto &dec: core.m_decisions)
+    {
+        std::cout << "--" << dec.m_decName << '\n';
+    }
 }
 
 void Console::OutputResults(Core& core)

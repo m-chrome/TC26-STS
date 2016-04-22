@@ -8,12 +8,11 @@ CONFIG -= app_bundle
 TEMPLATE = app
 
 SOURCES += \
+    main_console.cpp \
     src/core.cpp \
-    tests/test-decision.cpp \
     src/monobit.cpp \
     src/run.cpp \
     src/console.cpp \
-    main_console.cpp \
     src/cephes.cpp \
     src/maurer.cpp \
     src/chisquared.cpp \
@@ -29,8 +28,6 @@ HEADERS += \
     include/tc26/types.hpp \
     include/ui/console.hpp \
     include/tc26/utility.hpp \
-    libs/decisions/decision_module.hpp \
-    libs/statistical_tests/tests.hpp \
     include/tc26/cephes.hpp \
     include/statistical_tests/maurer.hpp \
     include/decisions/weak.hpp \

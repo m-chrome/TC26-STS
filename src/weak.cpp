@@ -1,4 +1,5 @@
-#include "include/decisions/weak.hpp"
+#include "../include/decisions/weak.hpp"
+
 #include <vector>
 
 bool WeakCheck(std::vector <double> &pvalue, double &alpha)

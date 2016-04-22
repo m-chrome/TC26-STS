@@ -1,6 +1,7 @@
+#include "../include/decisions/chisquared.hpp"
+
 #include <vector>
 #include <cmath>
-#include "include/decisions/chisquared.hpp"
 
 bool IsAlpha(double alpha)
 {

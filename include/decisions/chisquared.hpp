@@ -4,6 +4,16 @@
 #include <vector>
 #include <map>
 
+#ifdef WIN32
+#ifdef FEX_CNBCDLL
+#define DLLEXPORT __declspec(dllexport)
+#else
+#define DLLEXPORT __declspec(dllimport)
+#endif
+#else
+#define DLLEXPORT
+#endif
+
 // Модуль принятия решений
 // Хи-квадрат критерий
 
@@ -17,13 +27,16 @@ const std::map <double, double> table
     {0.8, 12.2421}, {0.9, 14.6837},     {0.95, 16.9190},    {0.975, 19.0228},   {0.99, 21.6660}
 };
 
-// Проверка того, имеется ли введённое alpha в таблице
-// параметров и квантилей.
-bool IsAlpha(double alpha);
+extern "C" DLLEXPORT
+{
+    // Проверка того, имеется ли введённое alpha в таблице
+    // параметров и квантилей.
+    bool IsAlpha(double alpha);
 
-// Хи-квадрат критерий для последовательности
-// p-value величин
-bool ChiSquareCheck(std::vector <double> &pvalue, double &alpha);
+    // Хи-квадрат критерий для последовательности
+    // p-value величин
+    bool ChiSquareCheck(std::vector <double> &pvalue, double &alpha);
+}
 
 #endif // CHISQUARED_HPP
 
