@@ -1,0 +1,37 @@
+Мануал по созданию модулей тестов в виде динамических библиотек.
+1. Создать чистый с++ проект.
+2. Создать <название_теста>.hpp и <название_теста>.cpp файлы для функции теста
+3. В hpp файл добавить строки:
+	#ifdef WIN32
+	#ifdef FEX_CNBCDLL
+	#define DLLEXPORT __declspec(dllexport)
+	#else
+	#define DLLEXPORT __declspec(dllimport)
+	#endif
+	#else
+	#define DLLEXPORT
+	#endif
+4. В hpp файл добавить функцию теста с названием <название_теста>test с аргументами std::ifstream& input, int argc, char* argv[].
+	Описание функции должно содержаться в блоке extern "C" DLLEXPORT {}
+	Пример(на примере monobit теста):
+		extern "C" DLLEXPORT
+		{
+			double monobittest(std::ifstream &input, int argc, char* argv[]);
+		}
+5. В cpp файле задать определение функции(как обычно, без всяких extern).
+6. Протестировать написанную функцию, тестирование реализовывать в main.cpp.
+7. После полного тестирования написанной функции изменить файл <название_проекта>.pro таким образом:
+	TEMPLATE = lib
+	HEADERS = <название_теста>.hpp
+	SOURCES = <название_теста>.cpp
+	TARGET = <название_теста>test
+	INCLUDEPATH += ../
+	QMAKE_CXXFLAGS += -std=c++14
+	
+	Пример(на примере monobit теста):
+	TEMPLATE = lib
+	HEADERS = monobit.hpp
+	SOURCES = monobit.cpp
+	TARGET = monobittest
+	INCLUDEPATH += ../
+	QMAKE_CXXFLAGS += -std=c++14
