@@ -7,6 +7,8 @@
 #define SLASH "/"
 #endif
 
+#include "include/tc26/core.hpp"
+
 #include <map>
 #include <string>
 
@@ -37,6 +39,8 @@ auto direct_Search(ForwardIterator begin,ForwardIterator end,std::string key)
             return i;
     return end+1;
 };
+
+bool UseConfigFile(char* name, Core& core);
 
 #endif // UTILITY_HPP
 

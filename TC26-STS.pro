@@ -17,7 +17,8 @@ SOURCES += \
     src/cephes.cpp \
     src/maurer.cpp \
     src/chisquared.cpp \
-    src/weak.cpp
+    src/weak.cpp \
+    src/utility.cpp
 
 
 HEADERS += \
