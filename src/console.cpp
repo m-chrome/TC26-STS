@@ -30,7 +30,7 @@ void Console::Help(const Core& core)
     std::cout << "\nAvailible decision modules:\n";
     for(auto &dec: core.m_decisions)
     {
-        std::cout << "--" << dec.m_decName << '\n';
+        std::cout << '\t' << dec.m_decName << '\n';
     }
 }
 

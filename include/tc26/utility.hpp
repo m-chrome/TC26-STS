@@ -37,7 +37,7 @@ auto direct_Search(ForwardIterator begin,ForwardIterator end,std::string key)
     for(ForwardIterator i=begin;i!=end;++i)
         if(i->m_testName==key)
             return i;
-    return end+1;
+    return end;
 };
 
 bool UseConfigFile(char* name, Core& core, bool& userOutputFile);
