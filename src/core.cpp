@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm>
 #include <string>
+#include <algorithm>
 
 #include <QDir>
 #include <QCoreApplication>
@@ -18,8 +19,8 @@ Core::Core()
     m_alphaParameter = 0;
     ParsingTests("../TC26-STS/libs/statistical_tests");
     ParsingDecisions("../TC26-STS/libs/decisions");
-    // TODO: функция для выбора файлов для тестирования
-    // TODO: функция для заполнения выбранных тестов
+    // Костыль. Надо решить, как сортировать decisions в нужном порядке
+    std::swap(m_decisions[0], m_decisions[1]);
 }
 
 Core::~Core()
@@ -78,24 +79,24 @@ void Core::Logic()
             m_pvalues.push_back(CurPvalues);
 
             // Идём по модулям принятия решений
-            std::cout << "Decision Rule:\n";
             for(auto& currentDecision: m_decisions)
             {
+                // Записываем тест и результат его проверки (по умочанию - false)
+                (currentStream.second).testResults.emplace(currentTest.m_testName, false);
                 if ((*currentDecision.m_func)(CurPvalues, m_alphaParameter))
-                    continue;
+                    // МПР прошёл - изменить результат на true
+                    (currentStream.second).testResults.find(currentTest.m_testName)->second = true;
                 else  
                 {
-                    (currentStream.second).testResult=0;
+                    // МПР не прошёл - изменить на false и сразу закончить проверку
+                    (currentStream.second).testResults.find(currentTest.m_testName)->second = false;
                     break;
                 }
             }
-            std::cout << "Decision Rule end.\n";
         }
-
-        // Всё хорошо, все тесты выполнены и поток успешно
-        // прошёл через тесты модуля принятия решения
-        (currentStream.second).testResult=1;
     }
+    // Всё хорошо, для каждого файла выполнены
+    // все тесты и их результаты провереты модулем принятия решений
     m_isAllFileChecked = 1;
 }
 

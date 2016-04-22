@@ -13,11 +13,11 @@ namespace tc26
     // Данные для файла
     struct FileData
     {
-        FileData(std::string str,bool res):
-            fileName(str),
-            testResult(res){}
+        FileData(std::string str):
+            fileName(str)
+        {}
         std::string fileName;
-        bool testResult;
+        std::map<std::string, bool> testResults;
     };
 
     // Для работы с потоками и результатами их тестирования

@@ -27,6 +27,7 @@ private:
     // + выходной файл с результатами)
     tc26::StreamsCheck_t    m_openFiles;
     std::fstream            m_resultFile;
+    std::fstream            m_pvalueLog;
 
     // Тесты
     tc26::Tests_t       m_useTests;
