@@ -11,7 +11,8 @@
 
 void Console::Help(const Core& core)
 {
-    std::cout << "TC26-STS -p alpha [--testname [args]] [-id directory] [-if file] [-o file]\n\n";
+    std::cout << "TC26-STS [-p alpha [--testname [args]] [-id directory] [-if file] [-o file]] [-c file]\n\n";
+    std::cout << "\t-c: config file(use INSTEAD OF other arguments)\n";
     std::cout << "\t-p: alpha parameter\n";
     std::cout << "\t--testname: names of tests with its arguments\n";
     std::cout << "\t-id: directory is a path to directory with input files\n";

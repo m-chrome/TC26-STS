@@ -24,62 +24,69 @@ int main(int argc, char *argv[])
 
     if(!strcmp(argv[1],"--help"))
     {
-        Error:Console::Help(core);
+Error:Console::Help(core);
         return 0;
     }
-    if(strcmp(argv[1],"-p")) goto Error;
-    if(std::strspn(argv[2],interpreter)!=strlen(argv[2])||!IsAlpha(atof(argv[2]))) goto Error;
-    core.setAlphaParameter(atof(argv[2]));
-    for(int i=3;i<argc;++i)
+    if(!strcmp(argv[1],"-c"))
     {
-        if(argv[i][0]=='-')
+        if(!UseConfigFile(argv[1],core)) goto Error;
+    }
+    else
+    {
+        if(strcmp(argv[1],"-p")) goto Error;
+        if(std::strspn(argv[2],interpreter)!=strlen(argv[2])||!IsAlpha(atof(argv[2]))) goto Error;
+        core.setAlphaParameter(atof(argv[2]));
+        for(int i=3;i<argc;++i)
         {
-            if(argv[i][1]=='-')
+            if(argv[i][0]=='-')
             {
-                //Модифицировать так, чтобы убрать allTests и useTests из public
-                char temp[30];
-                strcpy(temp,argv[i]+2);
-                if(utilityTable.find(temp)==utilityTable.end()) goto Error;
-                core.getUseTests().emplace_back(*direct_Search(core.getAllTests().begin(),core.getAllTests().end(),std::string(temp)));
-                for(int j=0;j<utilityTable.find(temp)->second.t_argc;++j)
+                if(argv[i][1]=='-')
                 {
-                    if(argv[++i][0]=='-'||std::strspn(argv[i],interpreter)!=strlen(argv[i])) goto Error;
-                    (core.getUseTests().end()-1)->m_testParameters.second[j]=argv[i];
-                }
-                (core.getUseTests().end()-1)->m_testParameters.first=utilityTable.find(temp)->second.t_argc;
-                continue;
-            }
-            if(argv[i][1]=='i')
-            {
-                if(argv[i][2]=='f')
-                {
-                    if(!Console::AddFileToFileMap(core,argv[++i])) goto Error;
+                    //Модифицировать так, чтобы убрать allTests и useTests из public
+                    char temp[30];
+                    strcpy(temp,argv[i]+2);
+                    if(utilityTable.find(temp)==utilityTable.end()) goto Error;
+                    core.getUseTests().emplace_back(*direct_Search(core.getAllTests().begin(),core.getAllTests().end(),std::string(temp)));
+                    for(int j=0;j<utilityTable.find(temp)->second.t_argc;++j)
+                    {
+                        if(argv[++i][0]=='-'||std::strspn(argv[i],interpreter)!=strlen(argv[i])) goto Error;
+                        (core.getUseTests().end()-1)->m_testParameters.second[j]=argv[i];
+                    }
+                    (core.getUseTests().end()-1)->m_testParameters.first=utilityTable.find(temp)->second.t_argc;
                     continue;
                 }
-                if(argv[i][2]=='d')
+                if(argv[i][1]=='i')
                 {
-                    std::size_t filesCount=Console::AddDirectoryToFileMap(core,argv[++i]);
-                    if(!filesCount) goto Error;
-                    std::cout << filesCount << " was added successfully from " << argv[i] << '\n';
+                    if(argv[i][2]=='f')
+                    {
+                        if(!Console::AddFileToFileMap(core,argv[++i])) goto Error;
+                        continue;
+                    }
+                    if(argv[i][2]=='d')
+                    {
+                        std::size_t filesCount=Console::AddDirectoryToFileMap(core,argv[++i]);
+                        if(!filesCount) goto Error;
+                        std::cout << filesCount << " was added successfully from " << argv[i] << '\n';
+                        continue;
+                    }
+                }
+                if(argv[i][1]=='o')
+                {
+                    if(userOutputFile)
+                    {
+                        std::cerr << "Multiple definition of output file.\n";
+                        goto Error;
+                    }
+                    userOutputFile=true;
+                    if(!Console::ChooseOutputFile(core,argv[++i])) goto Error;
                     continue;
                 }
-            }
-            if(argv[i][1]=='o')
-            {
-                if(userOutputFile)
-                {
-                    std::cerr << "Multiple definition of output file.\n";
-                    goto Error;
-                }
-                userOutputFile=true;
-                if(!Console::ChooseOutputFile(core,argv[++i])) goto Error;
-                continue;
+                std::cerr << "Invalid input parameters.\n";
+                goto Error;
             }
             std::cerr << "Invalid input parameters.\n";
             goto Error;
         }
-        std::cerr << "Invalid input parameters.\n";
-        goto Error;
     }
     if(!Console::GetInputFilesCount(core))
     {
