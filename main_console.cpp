@@ -28,7 +28,7 @@ Error:Console::Help(core);
     }
     if(!strcmp(argv[1],"-c"))
     {
-        if(!UseConfigFile(argv[1],core,userOutputFile)) goto Error;
+        if(!UseConfigFile(argv[2],core,userOutputFile)) goto Error;
     }
     else
     {
@@ -63,7 +63,11 @@ Error:Console::Help(core);
                     if(argv[i][2]=='d')
                     {
                         std::size_t filesCount=Console::AddDirectoryToFileMap(core,argv[++i]);
-                        if(!filesCount) goto Error;
+                        if(!filesCount)
+                        {
+                            std::cerr << "No input files were found in " << argv[i] << ".\n";
+                            goto Error;
+                        }
                         std::cout << filesCount << " file(s) was added successfully from " << argv[i] << '\n';
                         continue;
                     }
