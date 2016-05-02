@@ -8,7 +8,7 @@ bool IsAlpha(double alpha)
     return table.find(alpha) != table.end();
 }
 
-bool ChiSquareCheck(std::vector <double> &pvalue, double alpha)
+bool ChiSquareCheck(std::vector <double> pvalue, double alpha)
 {
     const int       NGROUPS         = 10;
     const double    PV_PROBABILITY  = 0.1;
@@ -21,7 +21,7 @@ bool ChiSquareCheck(std::vector <double> &pvalue, double alpha)
     for(int i=0; i < NGROUPS; ++i)
     {
         int pv_freaquency=0;
-        while(pvalue[pv_counter] < uborder)
+        while(pvalue[pv_counter] < uborder  && pv_counter < nSize)
         {
             ++pv_counter;
             ++pv_freaquency;
