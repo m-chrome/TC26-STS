@@ -17,7 +17,8 @@ SOURCES += \
     src/maurer.cpp \
     src/chisquared.cpp \
     src/weak.cpp \
-    src/utility.cpp
+    src/utility.cpp \
+    src/gap.cpp
 
 
 HEADERS += \
@@ -31,6 +32,7 @@ HEADERS += \
     include/tc26/types.hpp \
     include/tc26/utility.hpp \
     include/tc26/cephes.hpp \
-    include/ui/console.hpp
+    include/ui/console.hpp \
+    include/statistical_tests/gap.hpp
 
 QMAKE_CXXFLAGS += -std=c++14
