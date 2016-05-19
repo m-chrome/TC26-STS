@@ -109,7 +109,7 @@ void Core::ParsingTests(QString dest)
     {
         QString plugin=el.right(el.size()-3);   //обрезка lib в названии
         plugin=plugin.section('.',0,0);         //обрезка расширения
-        QLibrary lib(QString(dest).append(SLASH).append(plugin));
+        QLibrary lib(QString(dest).append(SLASH).append(el));
         if (!lib.load()) std::cout << lib.isLoaded() << ' ' << lib.errorString().toStdString() << '\n';
         tc26::TestFunc_t* fct = new tc26::TestFunc_t ((tc26::TestFunc_t)(lib.resolve(plugin.toStdString().c_str())));
         if(!fct) std::cout << lib.errorString().toStdString() << '\n';

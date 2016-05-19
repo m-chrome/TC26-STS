@@ -75,7 +75,7 @@ bool UseConfigFile(char* name, Core& core, bool &userOutputFile)
                 snprintf(a,strlen(a),"%zu",arg);
                 (core.getUseTests().end()-1)->m_testParameters.second[j]=a;
             }
-            (core.getUseTests().end()-1)->m_testParameters.first=core.utilityTable.find(temp)->second.t_argc;
+            (core.getUseTests().end()-1)->m_testParameters.first=core.utilityTable.find(test)->second.t_argc;
             continue;
         }
         if(!strcmp(temp,"InputFile"))
