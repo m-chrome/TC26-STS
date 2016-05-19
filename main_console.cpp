@@ -14,13 +14,12 @@
 int main(int argc, char *argv[])
 {
     bool userOutputFile =false;
-    Core core;
+    Core core("uTable.cfg");
     if(argc==1)
     {
         std::cerr << "Try tc26-STS --help\n";
         return 0;
     }
-
     if(!strcmp(argv[1],"--help"))
     {
 Error:Console::Help(core);
@@ -43,14 +42,14 @@ Error:Console::Help(core);
                 {
                     char temp[30];
                     strcpy(temp,argv[i]+2);
-                    if(utilityTable.find(temp)==utilityTable.end()||direct_Search(core.getAllTests().begin(),core.getAllTests().end(),std::string(temp))==core.getAllTests().end()) goto Error;
+                    if(core.utilityTable.find(temp)==core.utilityTable.end()||direct_Search(core.getAllTests().begin(),core.getAllTests().end(),std::string(temp))==core.getAllTests().end()) goto Error;
                     core.getUseTests().emplace_back(*direct_Search(core.getAllTests().begin(),core.getAllTests().end(),std::string(temp)));
-                    for(int j=0;j<utilityTable.find(temp)->second.t_argc;++j)
+                    for(int j=0;j<core.utilityTable.find(temp)->second.t_argc;++j)
                     {
                         if(argv[++i][0]=='-'||std::strspn(argv[i],Console::interpreter)!=strlen(argv[i])) goto Error;
                         (core.getUseTests().end()-1)->m_testParameters.second[j]=argv[i];
                     }
-                    (core.getUseTests().end()-1)->m_testParameters.first=utilityTable.find(temp)->second.t_argc;
+                    (core.getUseTests().end()-1)->m_testParameters.first=core.utilityTable.find(temp)->second.t_argc;
                     continue;
                 }
                 if(argv[i][1]=='i')

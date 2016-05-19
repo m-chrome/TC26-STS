@@ -8,13 +8,13 @@
 #include <algorithm>
 
 #include <QDir>
-#include <QCoreApplication>
 #include <QLibrary>
 #include <QString>
 #include <QStringList>
 
-Core::Core()
+Core::Core(const char* path)
 {
+    CreateUtilityTable(path);
     m_isAllFileChecked = 0;
     m_alphaParameter = 0;
     ParsingTests("../TC26-STS/libs/statistical_tests");
@@ -134,4 +134,36 @@ void Core::ParsingDecisions(QString dest)
         if(!fct) std::cout << lib.errorString().toStdString() << '\n';
         m_decisions.emplace_back(tc26::DecisionObj(*fct, plugin.toStdString()));
     }
+}
+
+bool Core::CreateUtilityTable(const char* path)
+{
+    std::ifstream uT(path);
+    if(uT.bad()) return false;
+    char sym, temp[255];
+    int count;
+    while(uT)
+    {
+        uT.get(sym);
+        if(sym=='#')
+        {
+            ClearStr(temp);
+            uT.getline(temp,255);
+            continue;
+        }
+        if(sym=='\n') continue;
+        uT.unget();
+        std::pair<std::string,testInfo> newEl;
+        ClearStr(temp);
+        uT.getline(temp,255,' ');
+        newEl.first=std::string(temp);
+        if(!(uT >> count)) return false;
+        newEl.second.t_argc=count;
+        ClearStr(temp);
+        uT.getline(temp,255);
+        newEl.second.description=std::string(temp);
+        utilityTable.emplace(newEl);
+    }
+    uT.close();
+    return true;
 }

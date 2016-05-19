@@ -8,7 +8,9 @@
 #include <cstdio>
 #include <cstring>
 
-void ClearStr(char* s,int n=255)
+
+
+void ClearStr(char* s,int n)
 {
     for(int i=0;i<n;++i) s[i]='\0';
 }
@@ -52,7 +54,7 @@ bool UseConfigFile(char* name, Core& core, bool &userOutputFile)
             ClearStr(test,30);
             file >> test;
             std::strcat(test,"test");
-            if(utilityTable.find(test)==utilityTable.end()||direct_Search(core.getAllTests().begin(),core.getAllTests().end(),std::string(test))==core.getAllTests().end()){
+            if(core.utilityTable.find(test)==core.utilityTable.end()||direct_Search(core.getAllTests().begin(),core.getAllTests().end(),std::string(test))==core.getAllTests().end()){
                 std::cerr << test <<" wasn't found.\n";
                 return false;
             }
@@ -60,7 +62,7 @@ bool UseConfigFile(char* name, Core& core, bool &userOutputFile)
             ClearStr(temp);
             file.getline(temp,255);
             std::istringstream arguments(temp);
-            for(int j=0;j<utilityTable.find(test)->second.t_argc;++j)
+            for(int j=0;j<core.utilityTable.find(test)->second.t_argc;++j)
             {
                 std::size_t arg;
                 char a[30];
@@ -73,7 +75,7 @@ bool UseConfigFile(char* name, Core& core, bool &userOutputFile)
                 snprintf(a,strlen(a),"%zu",arg);
                 (core.getUseTests().end()-1)->m_testParameters.second[j]=a;
             }
-            (core.getUseTests().end()-1)->m_testParameters.first=utilityTable.find(temp)->second.t_argc;
+            (core.getUseTests().end()-1)->m_testParameters.first=core.utilityTable.find(temp)->second.t_argc;
             continue;
         }
         if(!strcmp(temp,"InputFile"))

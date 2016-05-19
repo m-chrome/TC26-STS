@@ -7,10 +7,16 @@
 
 #include <QString>
 
+struct testInfo
+{
+    int t_argc;
+    std::string description;
+};
+
 class Core
 {
 public:
-    Core();
+    Core(const char* path);
     ~Core();
 
     // Внешние методы
@@ -19,6 +25,8 @@ public:
     void Logic();
     tc26::Tests_t& getUseTests();
     tc26::Tests_t& getAllTests();
+
+    std::map<std::string,testInfo> utilityTable;
 
     friend class Console;
 
@@ -42,6 +50,7 @@ private:
     // Методы
     void ParsingTests(QString dest);
     void ParsingDecisions(QString dest);
+    bool CreateUtilityTable(const char* path);
 
     // Нужные переменные
     bool                    m_isAllFileChecked;

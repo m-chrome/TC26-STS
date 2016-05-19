@@ -22,9 +22,9 @@ void Console::Help(const Core& core)
     for(auto& el: core.m_allTests)
     {
         std::cout << "--" << el.m_testName << '\t';
-        for(int i=1;i<=utilityTable.find(el.m_testName)->second.t_argc;++i)
+        for(int i=1;i<=core.utilityTable.find(el.m_testName)->second.t_argc;++i)
             std::cout << "arg" << i << ' ';
-        std::cout << '\t' << utilityTable.find(el.m_testName)->second.description << '\n';
+        std::cout << '\t' << core.utilityTable.find(el.m_testName)->second.description << '\n';
     }
 
     std::cout << "\nAvailible decision modules:\n";
