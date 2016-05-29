@@ -17,7 +17,7 @@ int state=atoi(argv[1]);
         return -1;
     }
     if(state>0)
-        state=state+(length/2)+1;
+        state=state+(length/2)-1;
     else
         state=state+(length/2);
     int max=0, max1=0,J=0;
