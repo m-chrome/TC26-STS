@@ -16,7 +16,7 @@
 
 extern "C" DLLEXPORT
 {
-    double randomwalktest(std::ifstream &input, int argc, char* argv[]);
+    double randomwalktest( std::ifstream &input, int argc, char* argv[]);
 }
 
 #endif
