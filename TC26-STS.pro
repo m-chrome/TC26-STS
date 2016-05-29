@@ -18,7 +18,8 @@ SOURCES += \
     src/chisquared.cpp \
     src/weak.cpp \
     src/utility.cpp \
-    src/gap.cpp
+    src/gap.cpp \
+    src/randomwalk.cpp
 
 
 HEADERS += \
@@ -33,6 +34,7 @@ HEADERS += \
     include/tc26/utility.hpp \
     include/tc26/cephes.hpp \
     include/ui/console.hpp \
-    include/statistical_tests/gap.hpp
+    include/statistical_tests/gap.hpp \
+    include/statistical_tests/randomwalk.hpp
 
 QMAKE_CXXFLAGS += -std=c++14
