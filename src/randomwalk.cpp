@@ -67,10 +67,10 @@ int state=atoi(argv[1]);
             max1=0;
         }
     }
-    vector<vector<int>> M(length);
+    std::vector<std::vector<int>> M(length);
     for ( int i = 0 ; i < length ; i++ )
        M[i].resize(max);
-    vector<int> cy(J);
+    std::vector<int> cy(J);
     for(int x1=0;x1<length;x1++){
        int x2;
        if(x1<(length/2))
@@ -93,10 +93,10 @@ int state=atoi(argv[1]);
            M[x1][c]++;
        }
     }
-    vector<vector<double>> M1(length);
+    std::vector<std::vector<double>> M1(length);
     for ( int i = 0 ; i < length ; i++ )
        M1[i].resize(max);
-    vector<double> X(length);
+    std::vector<double> X(length);
     for ( int i = 0 ; i < length ; i++ )
        X[i]=0;
     for(int x=0;x<length;x++){

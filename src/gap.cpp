@@ -11,7 +11,7 @@
 #include <algorithm>
 
 double p(int A, int B, int m){
-    return (B-A +1)/(pow(2,m));
+    return (double)(B-A +1)/(1<<m);
 }
 
 double pt(double p, int t){
@@ -55,7 +55,7 @@ double gaptest(std::ifstream &input, int argc, char** argv)
     size_t m = std::stoul(std::string (argv[1]));
     size_t A = std::stoul(std::string (argv[2]));
     size_t B = std::stoul(std::string (argv[3]));
-    size_t m2 = pow(2,m)-1; // ( 1 << m) -1
+    size_t m2 = ( 1 << m) -1;
     int length = nvalue;
     size_t N = length /m;
     char bit;
